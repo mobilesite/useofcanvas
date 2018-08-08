@@ -1,23 +1,22 @@
 <template>
-  <div class="page page--drawaxis">
+  <div class="page page--drawsector">
     <h1 class="page-title" ref="page-title">{{ title }}</h1>
-    <canvas class="drawaxis-canvas" ref="drawaxis-canvas"></canvas>
-    <div class="drawaxis-compare">对比盒子</div>
+    <canvas class="drawsector-canvas" ref="drawsector-canvas"></canvas>
   </div>
 </template>
 
 <script>
 import { getRatio } from './utils';
-import { Axis } from './axis';
+import { Sector } from './sector';
 
 export default {
   data() {
     return {
-      title: '绘制坐标轴',
+      title: '绘制扇形',
     };
   },
   mounted() {
-    const canvas = this.$refs['drawaxis-canvas'];
+    const canvas = this.$refs['drawsector-canvas'];
     const ctx = canvas.getContext('2d');
     const ratio = getRatio(ctx);
 
@@ -29,14 +28,6 @@ export default {
   },
   methods: {
     render(canvas, ratio) {
-      const padding = 80.5; // 时间轴距离canvas边缘的距离
-      const strokeColor = '#ff0000'; // 时间轴颜色
-      const arrowHeadLength = 10; // 时间轴箭头的长度
-      const arrowAngle = 30; // 时间轴箭头两侧线之间夹角的一半
-      const tickMarkSpacing = 10; // 刻度间隔
-      const smallTickMarkLength = 6; // 小刻度线的长度
-      const largeTickMarkLength = 16; // 大刻度线的高度
-
       const ctx = canvas.getContext('2d');
       const canvasWidth = window.innerWidth * ratio;
       const canvasHeight =
@@ -49,23 +40,31 @@ export default {
       canvas.style.width = `${canvasWidth / ratio}px`;
       canvas.style.height = `${canvasHeight / ratio}px`;
 
-      ctx.rotate(-(10 * Math.PI) / 180);
-
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-      const axis = new Axis(
+      const sector = new Sector(
         ctx,
         ratio,
-        padding,
-        arrowHeadLength,
-        arrowAngle,
-        strokeColor,
-        tickMarkSpacing,
-        smallTickMarkLength,
-        largeTickMarkLength,
       );
 
-      axis.draw();
+      const x = canvasWidth / 2;
+      const y = canvasHeight / 2;
+      const radius = 100;
+
+      let i = 6;
+      const colorArr = [
+        'red',
+        'orange',
+        'yellow',
+        'green',
+        'blue',
+        'pink',
+      ];
+
+      while (i) {
+        sector.draw(x, y, radius, 0, -i * Math.PI / 3, colorArr[i]);
+        i -= 1;
+      }
     },
   },
 };
@@ -81,11 +80,11 @@ export default {
   text-align: center;
   background: url('../../assets/wood.jpg') repeat-x;
 }
-.drawaxis-canvas {
+.drawsector-canvas {
   /* width: 100%; */
   background-color: #fff;
 }
-.drawaxis-compare{
+.drawsector-compare{
   border: 1px solid red;
   margin: 0 80px 80px;
   padding: 20px;

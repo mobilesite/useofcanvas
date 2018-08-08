@@ -22,7 +22,9 @@ export default {
 
     this.render(canvas, ratio);
 
-    window.addEventListener('resize', this.render);
+    window.addEventListener('resize', () => {
+      this.render(canvas, ratio);
+    });
   },
   methods: {
     render(canvas, ratio) {
@@ -81,6 +83,6 @@ export default {
 }
 .drawclock-canvas {
   /* width: 100%; */
-  background-color: #e2e2e2;
+  background-color: #fff;
 }
 </style>

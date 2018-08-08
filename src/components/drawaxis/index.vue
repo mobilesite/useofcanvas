@@ -22,11 +22,13 @@ export default {
 
     this.render(canvas, ratio);
 
-    window.addEventListener('resize', this.render);
+    window.addEventListener('resize', () => {
+      this.render(canvas, ratio);
+    });
   },
   methods: {
     render(canvas, ratio) {
-      const padding = 80; // 时间轴距离canvas边缘的距离
+      const padding = 80.5; // 时间轴距离canvas边缘的距离
       const strokeColor = '#ff0000'; // 时间轴颜色
       const arrowHeadLength = 10; // 时间轴箭头的长度
       const arrowAngle = 30; // 时间轴箭头两侧线之间夹角的一半

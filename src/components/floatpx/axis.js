@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 export class Axis {
-  constructor(ctx, ratio, padding, arrowHeadLength, arrowAngle, strokeColor, tickMarkSpacing, 
+  constructor(ctx, ratio, padding, arrowHeadLength, arrowAngle, strokeColor, tickMarkSpacing,
     smallTickMarkLength, largeTickMarkLength) {
     if (!ctx || !ratio || (typeof padding !== 'number' && typeof padding !== 'object')) {
       return;
@@ -38,7 +38,7 @@ export class Axis {
   }
 
   draw() {
-    const { ctx, strokeColor, arrowLineLength, arrowAngle, 
+    const { ctx, strokeColor, arrowLineLength, arrowAngle,
       tickMarkSpacing, smallTickMarkLength, largeTickMarkLength } = this;
     ctx.save();
     ctx.strokeStyle = strokeColor;
@@ -96,9 +96,10 @@ export class Axis {
 
     let i = 1;
     while (((i + 5) * tickMarkSpacing) + originX < canvasWidth - padding.right) {
-      const length = i % 5 === 0 ? 
+      const length = i % 5 === 0 ?
         largeTickMarkLength : smallTickMarkLength;
       const currentX = originX + (i * tickMarkSpacing);
+      console.log(111111, currentX, originY);
       ctx.moveTo(currentX, originY);
       ctx.lineTo(currentX, originY - length);
       ctx.fillStyle = this.strokeColor;
@@ -108,7 +109,7 @@ export class Axis {
         const textWidth = ctx.measureText(text).width;
         ctx.fillText(text, currentX - (textWidth / 2), originY - length - 5);
       }
-      
+
       i += 1;
     }
     ctx.stroke();
@@ -116,7 +117,7 @@ export class Axis {
     ctx.beginPath();
     let j = 1;
     while (originY - ((j + 5) * tickMarkSpacing) > padding.top) {
-      const length = j % 5 === 0 ? 
+      const length = j % 5 === 0 ?
         largeTickMarkLength : smallTickMarkLength;
       const currentY = originY - (j * tickMarkSpacing);
       ctx.moveTo(originX, currentY);
