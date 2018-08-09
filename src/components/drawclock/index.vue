@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { getRatio, requestAnimationFrame as raf } from './utils';
+import { getRatio, requestAnimationFrame as raf } from '../../utils/index';
 import { Clock } from './clock';
 
 export default {
@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     render(canvas, ratio) {
-      const r = 200;
+      const r = 300;
       const color = '#ff0000'; // 时间轴颜色
       const tickMarkSpacing = 10; // 刻度间隔
       const smallTickMarkLength = 6; // 小刻度线的长度

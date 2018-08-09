@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { getRatio } from './utils';
+import { getRatio } from '../../utils/index';
 import { Sector } from './sector';
 
 export default {
@@ -40,6 +40,9 @@ export default {
       canvas.style.width = `${canvasWidth / ratio}px`;
       canvas.style.height = `${canvasHeight / ratio}px`;
 
+      this.draw(ctx, ratio, canvasWidth, canvasHeight);
+    },
+    draw(ctx, ratio, canvasWidth, canvasHeight) {
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
       const sector = new Sector(
@@ -49,22 +52,23 @@ export default {
 
       const x = canvasWidth / 2;
       const y = canvasHeight / 2;
-      const radius = 100;
+      const radius = 300;
 
-      let i = 6;
-      const colorArr = [
-        'red',
-        'orange',
-        'yellow',
-        'green',
-        'blue',
-        'pink',
-      ];
+      sector.draw(x, y, radius, 0, -Math.PI / 3, '#ff0000');
 
-      while (i) {
-        sector.draw(x, y, radius, 0, -i * Math.PI / 3, colorArr[i]);
-        i -= 1;
-      }
+      // let i = 6;
+      // const colorArr = [
+      //   'red',
+      //   'orange',
+      //   'yellow',
+      //   'green',
+      //   'blue',
+      //   'pink',
+      // ];
+      // while (i) {
+      //   sector.draw(x, y, radius, 0, -i * Math.PI / 3, colorArr[i - 1]);
+      //   i -= 1;
+      // }
     },
   },
 };

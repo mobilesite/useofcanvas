@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { getRatio } from './utils';
+import { getRatio } from '../../utils/index';
 import { Axis } from './axis';
 
 export default {
@@ -49,7 +49,7 @@ export default {
       canvas.style.width = `${canvasWidth / ratio}px`;
       canvas.style.height = `${canvasHeight / ratio}px`;
 
-      ctx.rotate(-(10 * Math.PI) / 180);
+      // ctx.rotate(-(10 * Math.PI) / 180);
 
       ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 

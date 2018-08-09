@@ -8,14 +8,14 @@ export class Sector {
   draw(x, y, radius, startDegree, endDegree, fillColor) {
     const { ctx } = this;
     ctx.save();
+    ctx.strokeStyle = null;
     ctx.fillStyle = fillColor;
 
     ctx.save();
 
     ctx.translate(x, y);
     ctx.beginPath();
-
-    ctx.arc(0, 0, radius, startDegree, endDegree, true);
+    ctx.arc(0, 0, radius, startDegree, endDegree, true); // 圆弧
 
     ctx.save();
 
